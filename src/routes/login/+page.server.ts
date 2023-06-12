@@ -1,18 +1,51 @@
+import { z } from 'zod';
+import { setError, superValidate } from 'sveltekit-superforms/server';
+import type { Actions, PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
+import { AuthApiError } from '@supabase/supabase-js';
 
-export const actions = {
-	default: async ({ request, locals: { supabase } }) => {
-		const formData = await request.formData();
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
-		const { error } = await supabase.auth.signInWithPassword({
-			email,
-			password
-		});
-		if (error) {
-			console.log(error);
-			return fail(500, { message: 'Server error. Try again later.', success: false, email });
+const loginUserSchema = z.object({
+	email: z.string().email('Please enter a valid email address.'),
+	password: z.string().min(6, 'Please enter a password with at least six characters.')
+});
+
+export const load: PageServerLoad = async (event) => {
+	const session = await event.locals.getSession();
+	if (session) {
+		throw redirect(302, '/');
+	}
+	return {
+		form: superValidate(loginUserSchema)
+	};
+};
+
+export const actions: Actions = {
+	default: async (event) => {
+		const redirectTo = event.url.searchParams.get('redirectTo');
+		const form = await superValidate(event, loginUserSchema);
+
+		if (!form.valid) {
+			return fail(400, {
+				form
+			});
 		}
-		throw redirect(303, '/');
+
+		const { error: authError } = await event.locals.supabase.auth.signInWithPassword(form.data);
+
+		if (authError) {
+			if (authError instanceof AuthApiError && authError.status === 400) {
+				setError(form, 'email', 'Invalid credentials');
+				setError(form, 'password', 'Invalid credentials');
+				return fail(400, {
+					form
+				});
+			}
+		}
+
+		if (redirectTo) {
+			throw redirect(302, `/${redirectTo.slice(1)}`);
+		}
+
+		throw redirect(302, '/');
 	}
 };
