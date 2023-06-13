@@ -34,5 +34,11 @@
 		</label>
 		<button type="submit" class="btn variant-filled mt-8">Log in</button>
 		<button type="reset" on:click={resetForm} class="btn variant-filled-error mt-8">Reset</button>
+		<div class="text-sm font-medium text-gray-500 dark:text-gray-300 mt-4">
+			Don't have an account? <a
+				href="/register"
+				class="text-blue-700 hover:underline dark:text-blue-500">Sign up</a
+			>
+		</div>
 	</form>
 </div>

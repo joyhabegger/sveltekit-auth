@@ -3,7 +3,22 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	const { form, errors, enhance, reset } = superForm(data.form);
+	const { form, errors, enhance, reset } = superForm(data.form, {
+		resetForm: true,
+		onResult: ({ result }) => {
+			switch (result.type) {
+				case 'success':
+					alert('Success! Confirm your email to login.');
+					break;
+				case 'error':
+					alert('Error creating your account!');
+					break;
+				default:
+					return;
+			}
+			return;
+		}
+	});
 	function resetForm() {
 		reset({ data: { email: '', password: '', passwordConfirm: '' } });
 	}
@@ -47,5 +62,11 @@
 		</label>
 		<button type="submit" class="btn variant-filled mt-8">Sign up</button>
 		<button type="reset" on:click={resetForm} class="btn variant-filled-error mt-8">Reset</button>
+		<div class="text-sm font-medium text-gray-500 dark:text-gray-300 mt-4">
+			Already have an account? <a
+				href="/login"
+				class="text-blue-700 hover:underline dark:text-blue-500">Log in</a
+			>
+		</div>
 	</form>
 </div>

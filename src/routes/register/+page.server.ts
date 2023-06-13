@@ -31,6 +31,10 @@ export const actions: Actions = {
 		const { error: authError } = await event.locals.supabase.auth.signUp({
 			email: form.data.email,
 			password: form.data.password
+			// https://github.com/supabase/auth-helpers/issues/545
+			// options: {
+			// 	emailRedirectTo: `${event.url.origin}/auth/callback`
+			// }
 		});
 
 		if (authError) {
