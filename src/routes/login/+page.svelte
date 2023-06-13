@@ -24,5 +24,6 @@
 			{/if}
 		</label>
 		<button type="submit" class="btn variant-filled mt-8">Log in</button>
+		<button type="reset" class="btn variant-filled-error mt-8">Reset</button>
 	</form>
 </div>

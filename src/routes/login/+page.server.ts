@@ -1,13 +1,8 @@
-import { z } from 'zod';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import type { Actions, PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
-
-const loginUserSchema = z.object({
-	email: z.string().email('Invalid email address.'),
-	password: z.string().min(6, 'Password must be at least 6 characters.')
-});
+import { loginUserSchema } from '$lib/schemas';
 
 export const load: PageServerLoad = async (event) => {
 	const session = await event.locals.getSession();
@@ -23,6 +18,7 @@ export const actions: Actions = {
 	default: async (event) => {
 		const redirectTo = event.url.searchParams.get('redirectTo');
 		const form = await superValidate(event, loginUserSchema);
+		console.log('POST', form);
 
 		if (!form.valid) {
 			return fail(400, {

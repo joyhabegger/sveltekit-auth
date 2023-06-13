@@ -16,6 +16,7 @@ export const load: PageServerLoad = async (event) => {
 export const actions: Actions = {
 	default: async (event) => {
 		const form = await superValidate(event, registerUserSchema);
+		console.log('POST', form);
 
 		if (!form.valid) {
 			return fail(400, {
@@ -24,7 +25,7 @@ export const actions: Actions = {
 		}
 
 		if (form.data.password !== form.data.passwordConfirm) {
-			return setError(form, 'passwordConfirm', 'Passwords do not match');
+			return setError(form, 'passwordConfirm', 'Passwords do not match.');
 		}
 
 		const { error: authError } = await event.locals.supabase.auth.signUp({
@@ -33,7 +34,7 @@ export const actions: Actions = {
 		});
 
 		if (authError) {
-			return setError(form, null, 'An error occurred while registering.');
+			return setError(form, '', 'An error occurred while registering.');
 		}
 
 		return {
