@@ -11,7 +11,7 @@
 
 <div class="container h-full mx-auto flex justify-center items-center px-10">
 	<form method="post" use:enhance novalidate>
-		<h2 class="h2 mb-6">Sign up our new app!</h2>
+		<h2 class="h2 mb-6">Sign up for our new app!</h2>
 		<label class="label mt-8" for="email">
 			<span class="font-bold">Email</span>
 			<input class="input" type="email" name="email" id="email" bind:value={$form.email} />
