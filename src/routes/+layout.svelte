@@ -6,6 +6,7 @@
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 	import { AppShell, AppBar, LightSwitch } from '@skeletonlabs/skeleton';
+	import { Toast } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
 
 	import { invalidate } from '$app/navigation';
@@ -29,6 +30,7 @@
 	});
 </script>
 
+<Toast />
 <AppShell>
 	<svelte:fragment slot="header">
 		<AppBar>

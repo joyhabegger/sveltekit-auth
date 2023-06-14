@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms/client';
 	import type { PageData } from './$types';
+	import { toastStore } from '@skeletonlabs/skeleton';
+	import type { ToastSettings } from '@skeletonlabs/skeleton';
 
 	export let data: PageData;
 	const { form, errors, enhance, reset } = superForm(data.form, {
@@ -8,10 +10,18 @@
 		onResult: ({ result }) => {
 			switch (result.type) {
 				case 'success':
-					alert('Success! Confirm your email to login.');
+					const toastSuccess: ToastSettings = {
+						message: 'Success! Confirm your email to login.',
+						background: 'variant-filled-primary'
+					};
+					toastStore.trigger(toastSuccess);
 					break;
 				case 'error':
-					alert('Error creating your account!');
+					const toastError: ToastSettings = {
+						message: 'Error creating your account!',
+						background: 'variant-filled-error'
+					};
+					toastStore.trigger(toastError);
 					break;
 				default:
 					return;
