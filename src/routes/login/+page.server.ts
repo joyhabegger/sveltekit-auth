@@ -18,7 +18,6 @@ export const actions: Actions = {
 	default: async (event) => {
 		const redirectTo = event.url.searchParams.get('redirectTo');
 		const form = await superValidate(event, loginUserSchema);
-		console.log('POST', form);
 
 		if (!form.valid) {
 			return fail(400, {
