@@ -12,10 +12,10 @@
 	import '../app.postcss';
 	import { AppShell, AppBar, LightSwitch, popup } from '@skeletonlabs/skeleton';
 	import { Toast } from '@skeletonlabs/skeleton';
-	import { goto } from '$app/navigation';
-
-	import { invalidate } from '$app/navigation';
+	import { goto, invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
+
+	import { ChevronDown } from 'lucide-svelte';
 
 	export let data;
 
@@ -53,7 +53,7 @@
 							use:popup={{ event: 'click', target: 'account' }}
 						>
 							<span>Account</span>
-							<i class="fa-solid fa-caret-down opacity-50" />
+							<ChevronDown size={16} />
 						</button>
 						<!-- popup -->
 						<div class="card p-4 w-40 shadow-xl" data-popup="account">

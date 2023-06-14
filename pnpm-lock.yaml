@@ -11,6 +11,9 @@ dependencies:
   '@supabase/supabase-js':
     specifier: ^2.24.0
     version: 2.24.0
+  lucide-svelte:
+    specifier: ^0.244.0
+    version: 0.244.0(svelte@3.59.1)
 
 devDependencies:
   '@floating-ui/dom':
@@ -65,7 +68,7 @@ devDependencies:
     specifier: ^3.0.1
     version: 3.4.3(postcss@8.4.24)(svelte@3.59.1)
   sveltekit-superforms:
-    specifier: 1.0.0
+    specifier: ^1.0.0
     version: 1.0.0(@sveltejs/kit@1.20.2)(svelte@3.59.1)(zod@3.21.4)
   tailwindcss:
     specifier: ^3.3.2
@@ -1569,6 +1572,14 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /lucide-svelte@0.244.0(svelte@3.59.1):
+    resolution: {integrity: sha512-FOzIF+1EUHllYLmSCLo0UFqyI6+796lcBLKnA7wz21TELGETlR/xzJDEiU7YlS8ybRau2t3lzFv8h4Wj8z3oDQ==}
+    peerDependencies:
+      svelte: ^3.49.0
+    dependencies:
+      svelte: 3.59.1
+    dev: false
 
   /magic-string@0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
