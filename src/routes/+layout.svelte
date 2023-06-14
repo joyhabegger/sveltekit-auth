@@ -15,7 +15,7 @@
 	import { goto, invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 
-	import { ChevronDown } from 'lucide-svelte';
+	import { ChevronDown, Settings, LogIn, LogOut, UserCircle2 } from 'lucide-svelte';
 
 	export let data;
 
@@ -52,21 +52,26 @@
 							class="btn btn-sm variant-ghost-surface"
 							use:popup={{ event: 'click', target: 'account' }}
 						>
+							<UserCircle2 size={18} />
 							<span>Account</span>
-							<ChevronDown size={16} />
+							<ChevronDown size={18} />
 						</button>
 						<!-- popup -->
 						<div class="card p-4 w-40 shadow-xl" data-popup="account">
 							<nav class="list-nav">
 								<ul>
 									<li>
-										<a class="btn btn-sm variant-ghost-surface w-32" href="/settings">Settings</a>
+										<a class="btn btn-sm variant-ghost-surface w-32" href="/settings">
+											<Settings size={18} />
+											<span>Settings</span>
+										</a>
 									</li>
 									<li>
 										<form action="/logout" method="POST">
-											<button type="submit" class="btn btn-sm variant-ghost-surface w-32 mt-4"
-												>Logout</button
-											>
+											<button type="submit" class="btn btn-sm variant-ghost-surface w-32 mt-4">
+												<LogOut size={18} />
+												<span>Log out</span>
+											</button>
 										</form>
 									</li>
 								</ul>
@@ -75,8 +80,10 @@
 						</div>
 					</div>
 				{:else}
-					<a class="btn btn-sm variant-ghost-surface" href="/register">Register</a>
-					<a class="btn btn-sm variant-ghost-surface" href="/login">Login</a>
+					<a class="btn btn-sm variant-ghost-surface" href="/login">
+						<LogIn size={18} />
+						<span>Log in</span>
+					</a>
 				{/if}
 				<LightSwitch />
 			</svelte:fragment>
