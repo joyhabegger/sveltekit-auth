@@ -7,7 +7,7 @@
 	<div class="space-y-5">
 		<h1 class="h1">Home page</h1>
 		{#if data.session}
-			You are logged in as {data.session.user.email}
+			Welcome {data.session.user.email}
 		{/if}
 	</div>
 </div>

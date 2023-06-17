@@ -61,7 +61,7 @@
 							<nav class="list-nav">
 								<ul>
 									<li>
-										<a class="btn btn-sm variant-ghost-surface w-32" href="/settings">
+										<a class="btn btn-sm variant-ghost-surface w-32" href="/account">
 											<Settings size={18} />
 											<span>Settings</span>
 										</a>
