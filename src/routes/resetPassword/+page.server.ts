@@ -24,17 +24,12 @@ export const actions: Actions = {
 			});
 		}
 
-		// TODO: check that the user is valid
-
-		console.log('Calling reset password function', form.data.email);
 		const { error: authError } = await event.locals.supabase.auth.resetPasswordForEmail(
 			form.data.email,
 			{ redirectTo: 'http://localhost:5173/updatePassword' }
 		);
 
 		if (authError) {
-			console.log('An error occurred');
-			console.log(authError);
 			if (authError instanceof AuthApiError && authError.status === 400) {
 				setError(form, 'email', 'Invalid credentials');
 				return fail(400, {

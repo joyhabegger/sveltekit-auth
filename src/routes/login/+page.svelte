@@ -20,7 +20,14 @@
 			{/if}
 		</label>
 		<label class="label mt-8" for="password">
-			<span class="font-bold">Password</span>
+			<div class="flex justify-between items-center">
+				<span class="font-bold">Password</span>
+				<a
+					href="/resetPassword"
+					class="text-blue-700 dark:text-blue-500 hover:underline font-light font-xs mr-2"
+					>Forgot password?</a
+				>
+			</div>
 			<input
 				class="input"
 				type="password"

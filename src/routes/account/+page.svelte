@@ -80,7 +80,7 @@
 				Change the email associated with your account: <strong>{data.session?.user.email}</strong>
 			</p>
 			<!-- Email Address Form -->
-			<form method="POST" action="?/updateEmail" use:emailEnhance class="mt-4">
+			<form method="POST" action="?/updateEmail" use:emailEnhance class="mt-4" novalidate>
 				<label for="email" class="label mt-4">
 					<span class="font-bold">New Email</span>
 					<input class="input" type="email" name="email" id="email" bind:value={$emailForm.email} />
@@ -99,7 +99,7 @@
 			</div>
 			<p class="mt-3 max-w-none text-sm">Change the password associated with your account</p>
 			<!-- Change Password Form -->
-			<form method="POST" action="?/updatePassword" use:enhance class="mt-4">
+			<form method="POST" action="?/updatePassword" use:enhance class="mt-4" novalidate>
 				<label for="password" class="label mt-4">
 					<span class="font-bold">New Password</span>
 					<input
