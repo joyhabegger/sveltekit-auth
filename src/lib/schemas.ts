@@ -31,3 +31,7 @@ export const passwordChangeSchema = z.object({
 		.min(6, 'Password must be at least 6 characters.')
 		.max(64, 'Password must be 64 characters or less.')
 });
+
+export const resetPasswordSchema = z.object({
+	email: z.string().email('Invalid email address.')
+});

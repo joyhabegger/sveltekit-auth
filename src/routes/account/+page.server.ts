@@ -5,7 +5,6 @@ import { emailChangeSchema, passwordChangeSchema } from '$lib/schemas';
 import { handleLoginRedirect } from '$lib/helpers';
 
 export const load: PageServerLoad = async (event) => {
-	console.log('running load function');
 	const session = await event.locals.getSession();
 	if (!session) {
 		throw redirect(302, handleLoginRedirect(event));
