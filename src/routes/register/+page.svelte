@@ -18,7 +18,7 @@
 					break;
 				case 'error':
 					const toastError: ToastSettings = {
-						message: 'Error creating your account!',
+						message: 'An error occurred in creating your account!',
 						background: 'variant-filled-error'
 					};
 					toastStore.trigger(toastError);

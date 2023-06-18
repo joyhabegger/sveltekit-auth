@@ -2,12 +2,63 @@
 	import type { PageData } from './$types';
 	import { Lock, Mail } from 'lucide-svelte';
 	import { superForm } from 'sveltekit-superforms/client';
+	import { toastStore } from '@skeletonlabs/skeleton';
+	import type { ToastSettings } from '@skeletonlabs/skeleton';
 
 	export let data: PageData;
 
-	const { form: emailForm, errors: emailError, enhance: emailEnhance } = superForm(data.emailForm);
+	const {
+		form: emailForm,
+		errors: emailError,
+		enhance: emailEnhance
+	} = superForm(data.emailForm, {
+		resetForm: true,
+		onResult: ({ result }) => {
+			switch (result.type) {
+				case 'success':
+					const toastSuccess: ToastSettings = {
+						message:
+							'Success! Your email has been updated. Confirm your email change from both email accounts.',
+						background: 'variant-filled-primary'
+					};
+					toastStore.trigger(toastSuccess);
+					break;
+				case 'error':
+					const toastError: ToastSettings = {
+						message: 'An error occurred in updating your email!',
+						background: 'variant-filled-error'
+					};
+					toastStore.trigger(toastError);
+					break;
+				default:
+					return;
+			}
+			return;
+		}
+	});
 	const { form, errors, enhance } = superForm(data.passwordForm, {
-		resetForm: true
+		resetForm: true,
+		onResult: ({ result }) => {
+			switch (result.type) {
+				case 'success':
+					const toastSuccess: ToastSettings = {
+						message: 'Success! Your password has been updated.',
+						background: 'variant-filled-primary'
+					};
+					toastStore.trigger(toastSuccess);
+					break;
+				case 'error':
+					const toastError: ToastSettings = {
+						message: 'An error occurred in updating your password!',
+						background: 'variant-filled-error'
+					};
+					toastStore.trigger(toastError);
+					break;
+				default:
+					return;
+			}
+			return;
+		}
 	});
 </script>
 
@@ -16,7 +67,7 @@
 	<div class="mx-auto flex max-w-2xl flex-col items-center pb-8 text-center">
 		<span class="mt-2 text-5xl font-bold">Account Settings</span>
 		<span class="text-neutral-content mt-4 text-center text-lg leading-8">
-			Manage your email, password, and other account details.
+			Manage your email and password.
 		</span>
 	</div>
 	<div class=" mx-auto max-w-xl space-y-8 divide-y dark:divide-gray-700">
