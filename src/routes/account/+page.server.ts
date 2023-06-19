@@ -26,7 +26,6 @@ export const actions: Actions = {
 		const emailForm = await superValidate(event, emailChangeSchema);
 
 		if (!emailForm.valid) {
-			console.log('Invalid email form');
 			return fail(400, {
 				emailForm
 			});
