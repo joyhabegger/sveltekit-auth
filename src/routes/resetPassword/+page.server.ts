@@ -10,7 +10,7 @@ export const load: PageServerLoad = async (event) => {
 		throw redirect(302, '/');
 	}
 	return {
-		form: superValidate(resetPasswordSchema)
+		form: await superValidate(resetPasswordSchema)
 	};
 };
 

@@ -9,7 +9,7 @@ export const load: PageServerLoad = async (event) => {
 		throw redirect(302, '/');
 	}
 	return {
-		form: superValidate(registerUserSchema)
+		form: await superValidate(registerUserSchema)
 	};
 };
 
